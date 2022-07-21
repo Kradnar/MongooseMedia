@@ -27,7 +27,7 @@ exports.updateMovie = async (movieObj) => {
       console.log(results);
       console.log("Has been updated to...")
       
-      await Movie.updateOne({title: movieObj.title}, {$set: {title: movieObj.newTitle}}); //! - Not Working yet
+      await Movie.updateOne({title: movieObj.title}, {$set: {title: movieObj.newTitle}});
       const results2 = await Movie.findOne({title: movieObj.newTitle});
       console.log(results2);
     }
@@ -35,7 +35,7 @@ exports.updateMovie = async (movieObj) => {
       const results = await Movie.findOne({actor: movieObj.actor});
       console.log(results);
       console.log("Has been updated to...")
-      await Movie.updateOne({title: movieObj.actor}, {$set: {title: movieObj.newActor}}); //! - Not Working yet
+      await Movie.updateOne({title: movieObj.actor}, {$set: {title: movieObj.newActor}});
       const results2 = await collection.findOne({title: movieObj.newActor});
       console.log(results2);
     }
