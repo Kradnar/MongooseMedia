@@ -2,7 +2,6 @@ const TVShow = require("./model");
 
 exports.createTVShow = async (tvShowObj) => {
   try {
-    console.log(tvShowObj);
     const newTVShow = await TVShow.create(tvShowObj);
     console.log(newTVShow);
   } 
@@ -12,7 +11,6 @@ exports.createTVShow = async (tvShowObj) => {
 };
 exports.readTVShow = async (tvShowObj) => {
   try {
-    console.log(tvShowObj);
     const results = await TVShow.find()
     console.log(results);
   }
@@ -22,9 +20,17 @@ exports.readTVShow = async (tvShowObj) => {
 };
 exports.filterTVShow = async (tvShowObj) => {
   try {
-    console.log(tvShowObj);
-    const results = await TVShow.findOne({title: tvShowObj.title});
-    console.log(results);
+    if (tvShowObj.title) {
+      const results = await TVShow.findOne({title: tvShowObj.title});
+      console.log(results);
+    }
+    else if (tvShowObj.actor) {
+      const results = await TVShow.findOne({actor: tvShowObj.actor});
+      console.log(results);
+    }
+    else {
+      console.log("Please choose --title or --actor to filter by")
+    }
   }
   catch (error) {
     console.log(error);

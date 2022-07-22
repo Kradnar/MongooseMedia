@@ -2,7 +2,6 @@ const Movie = require("./model");
 
 exports.createMovie = async (movieObj) => {
   try {
-    console.log(movieObj);
     const newMovie = await Movie.create(movieObj);
     console.log(newMovie);
   } 
@@ -12,7 +11,6 @@ exports.createMovie = async (movieObj) => {
 };
 exports.readMovie = async (movieObj) => {
   try {
-    console.log(movieObj);
     const results = await Movie.find()
     console.log(results);
   }
@@ -22,9 +20,17 @@ exports.readMovie = async (movieObj) => {
 };
 exports.filterMovie = async (movieObj) => {
   try {
-    console.log(movieObj);
-    const results = await Movie.findOne({title: movieObj.title});
-    console.log(results);
+    if (movieObj.title) {
+      const results = await Movie.findOne({title: movieObj.title});
+      console.log(results);
+    }
+    else if (movieObj.actor) {
+      const results = await Movie.findOne({actor: movieObj.actor});
+      console.log(results);
+    }
+    else {
+      console.log("Please choose --title or --actor to filter by")
+    }
   }
   catch (error) {
     console.log(error);

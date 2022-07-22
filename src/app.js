@@ -35,11 +35,11 @@ const app = async (yargsObj) => {
   else if (yargsObj.filter) {
     if (yargsObj.movie) {
       await filterMovie({ title: yargsObj.title, actor: yargsObj.actor });
-      //list all movies from DB
+      //filter all movies from DB to only show one specified
     }
     else if (yargsObj.tvShow) {
       await filterTVShow({ title: yargsObj.title, actor: yargsObj.actor });
-      //list all TV Shows from DB
+      //filter TV Shows from DB to only show one specified
     }
     else {
       console.log("Please state whether you wish to (R)ead from --movie or --tvShow DB")
