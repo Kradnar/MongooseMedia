@@ -3,9 +3,7 @@ const yargs = require("yargs");
 const mongoose = require("mongoose");
 const { createMovie, readMovie, updateMovie, deleteMovie } = require("./movie/functions");
 const { createTVShow, readTVShow, updateTVShow, deleteTVShow } = require("./tvShow/functions");
-// const { readMovie } = require("./movie/functions");
-// const { updateMovie } = require("./movie/functions");
-// const { deleteMovie } = require("./movie/functions");
+
 
 const app = async (yargsObj) => {
   if (yargsObj.create) {
@@ -50,11 +48,12 @@ const app = async (yargsObj) => {
   }
   else if (yargsObj.delete) {
     if (yargsObj.movie) {
-    await deleteMovie({ title: yargsObj.title, actor: yargsObj.actor });
-    //delete one movie from DB
+      await deleteMovie({ title: yargsObj.title, actor: yargsObj.actor });
+      //delete one movie from DB
     }
     else if (yargsObj.tvShow) {
-
+      await deleteTVShow({ title: yargsObj.title, actor: yargsObj.actor });
+      //delete one TV Show from DB
     }
   } 
   else {
