@@ -20,13 +20,22 @@ exports.readMovie = async (movieObj) => {
     console.log(error);
   }
 };
+exports.filterMovie = async (movieObj) => {
+  try {
+    console.log(movieObj);
+    const results = await Movie.findOne({title: movieObj.title});
+    console.log(results);
+  }
+  catch (error) {
+    console.log(error);
+  }
+}
 exports.updateMovie = async (movieObj) => {
   try {
     if (movieObj.title) {
       const results = await Movie.findOne({title: movieObj.title});
       console.log(results);
       console.log("Has been updated to...")
-      
       await Movie.updateOne({title: movieObj.title}, {$set: {title: movieObj.newTitle}});
       const results2 = await Movie.findOne({title: movieObj.newTitle});
       console.log(results2);

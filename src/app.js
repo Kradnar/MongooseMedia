@@ -1,8 +1,8 @@
 require("./db/connection");
 const yargs = require("yargs");
 const mongoose = require("mongoose");
-const { createMovie, readMovie, updateMovie, deleteMovie } = require("./movie/functions");
-const { createTVShow, readTVShow, updateTVShow, deleteTVShow } = require("./tvShow/functions");
+const { createMovie, readMovie, filterMovie, updateMovie, deleteMovie } = require("./movie/functions");
+const { createTVShow, readTVShow, filterTVShow, updateTVShow, deleteTVShow } = require("./tvShow/functions");
 
 
 const app = async (yargsObj) => {
@@ -26,6 +26,19 @@ const app = async (yargsObj) => {
     }
     else if (yargsObj.tvShow) {
       await readTVShow({ title: yargsObj.title, actor: yargsObj.actor });
+      //list all TV Shows from DB
+    }
+    else {
+      console.log("Please state whether you wish to (R)ead from --movie or --tvShow DB")
+    }
+  }
+  else if (yargsObj.filter) {
+    if (yargsObj.movie) {
+      await filterMovie({ title: yargsObj.title, actor: yargsObj.actor });
+      //list all movies from DB
+    }
+    else if (yargsObj.tvShow) {
+      await filterTVShow({ title: yargsObj.title, actor: yargsObj.actor });
       //list all TV Shows from DB
     }
     else {

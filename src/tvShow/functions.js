@@ -20,6 +20,16 @@ exports.readTVShow = async (tvShowObj) => {
     console.log(error);
   }
 };
+exports.filterTVShow = async (tvShowObj) => {
+  try {
+    console.log(tvShowObj);
+    const results = await TVShow.findOne({title: tvShowObj.title});
+    console.log(results);
+  }
+  catch (error) {
+    console.log(error);
+  }
+}
 exports.updateTVShow = async (tvShowObj) => {
   try {
     if (tvShowObj.title) {
